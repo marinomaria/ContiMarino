@@ -1,0 +1,30 @@
+// Signature definitions
+
+abstract sig User {}
+sig Company extends User {}
+sig Student extends User {}
+
+enum Boolean {TRUE, FALSE}
+enum InterviewState {
+	SCHEDULED,
+	CONFIRMED, 
+	ONGOING, 
+	CLOSED, 
+	CANCELLED
+}
+
+sig Slot {
+	interviews: set Interview // Set of interviews that *could* be held in this slot
+}
+
+sig Internship {
+	company: one Company
+}
+
+sig Interview {
+	internship: one Internship,
+	student: one Student,
+	var state: one InterviewState,
+	var veredictApproved: lone Boolean,
+	var scheduledTime: lone Slot // Slot in which the interview is confirmed
+}

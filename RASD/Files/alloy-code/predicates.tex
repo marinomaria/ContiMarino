@@ -1,0 +1,39 @@
+// Predicates
+
+pred createInterview(interview: Interview) {
+    interview.state = SCHEDULED
+}
+
+pred studentAcceptInvite(interview: Interview, slot: Slot) {
+	interview.state = SCHEDULED
+	after {
+		interview.state' = CONFIRMED
+		interview.scheduledTime' = slot
+		slot.interviews' = {interview}
+	}	
+}
+
+pred studentDeclineInvite(interview: Interview) {
+        interview.state = SCHEDULED
+        after {interview.state' = CANCELLED}
+}
+
+pred startInterview(interview: Interview) {
+        interview.state = CONFIRMED
+        after {interview.state' = ONGOING}
+}
+
+pred closeInterview(interview: Interview, approved: Boolean) {
+        interview.state = ONGOING
+        after {
+		interview.state' = CLOSED
+        	interview.veredictApproved' = approved
+	}
+}
+
+pred cancelInterview(interview: Interview) {
+        interview.state = SCHEDULED
+        after {interview.state' = CANCELLED}
+}
+
+pred doNothing {}

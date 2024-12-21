@@ -1,0 +1,64 @@
+// Facts
+
+fact systemBehavior {
+	all interview: Interview | once interview.state = SCHEDULED
+	always (
+		some i: Interview | (
+			createInterview[i] or
+			(some s: Slot | studentAcceptInvite[i, s]) or
+			studentDeclineInvite[i] or
+			startInterview[i] or
+			cancelInterview[i] or
+			(some b: Boolean | closeInterview[i, b])) or
+			doNothing
+	)
+}
+
+fact stateTransitions {
+    always all i: Interview {
+        // Transition from SCHEDULED
+        (i.state = SCHEDULED implies after i.state' in CONFIRMED + CANCELLED) 
+        
+        // Transition from CONFIRMED
+        (i.state = CONFIRMED implies after i.state' = ONGOING)
+        
+        // Transition from ONGOING
+        (i.state = ONGOING implies after i.state' = CLOSED)
+        
+        // CLOSED and CANCELLED are terminal states
+        (i.state = CLOSED implies after always i.state = CLOSED)
+        (i.state = CANCELLED implies after always i.state = CANCELLED)
+    }
+}
+
+
+
+fact closedIffVeredict {
+    all interview: Interview |
+	always (
+		(interview.state = CLOSED implies some interview.veredictApproved) &&
+		(some interview.veredictApproved implies interview.state = CLOSED))
+}
+
+fact scheduledTimeImpliesState {
+   all interview: Interview |
+	always ((some interview.scheduledTime implies interview.state in 
+			CONFIRMED +
+			ONGOING +
+			CLOSED
+		) &&
+		(interview.state in CONFIRMED + ONGOING + CLOSED implies
+                some interview.scheduledTime))
+}
+
+fact symetricalSlot {
+   all interview: Interview |
+	always (some interview.scheduledTime implies
+            interview.scheduledTime.interviews = {interview})
+}
+
+fact uniqueStudentInterviewPerInternship {
+    all s: Student, i: Internship |
+        always (lone interview: Interview | 
+            interview.student = s and interview.internship = i)
+}
