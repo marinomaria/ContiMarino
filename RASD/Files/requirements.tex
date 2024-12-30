@@ -21,7 +21,7 @@ The platform must be HTTPS compliant to ensure secure communication between user
 \item[] \textbf{Sign-Up, Login, and Profile Management}
 
 
-\item The system should provide authentication so that each action can be correctly associated with a user
+\item The system should provide authentication so that each action can be correctly associated with an user
 
 
 \item When a student registers the system generates a profile containing their experience, skills, and education
@@ -392,14 +392,12 @@ The platform must be HTTPS compliant to ensure secure communication between user
 \begin{tabularx}{\textwidth}{|X|X|}
 \hline
 \textbf{Actors}           & user                                                       \\ \hline
-\textbf{Entry Condition}   & There’s a completed internship involving the user. The user is correctly registered. \\ \hline
-\textbf{Event Flow}        & 1. User clicks on “Give Feedback” on the email notification he/she received about a completed internship \\
-                           & 2. The user is redirected to the S\&C web-app \\
-                           & 3. Included Use Case: user login \\
-                           & 4. S\&C displays a form prompting the user to provide feedback (Included Use Case: form filling) \\
-                           & 5. The user provides ratings and comments about the internship experience \\
-                           & 6. S\&C saves the feedback in its internal database and updates the internship status accordingly. \\
-                           & 7. S\&C sends a notification to the company, notifying them that feedback has been submitted. \\ \hline
+\textbf{Entry Condition}   & There’s a completed internship involving the user. The user is correctly registered and logged-in. \\ \hline
+\textbf{Event Flow}        & 1. The user is navigating on the ``Closed Internships'' page \\
+                           & 2. S\&C displays a form prompting the user to provide feedback (Included Use Case: form filling) \\
+                           & 3. The user provides ratings and comments about the internship experience \\
+                           & 4. S\&C saves the feedback in its internal database and updates the internship status accordingly. \\
+                           & 5. S\&C sends a notification to the company, notifying them that feedback has been submitted. \\ \hline
 \textbf{Exit Condition}    & The internship feedback is saved and the status is updated. Both the user and the company have been notified. \\ \hline
 \textbf{Exceptions}        & If the user doesn’t submit feedback, the process remains pending. S\&C sends a reminder notification to the user to provide feedback within a set time frame (e.g., 3 days). \\ \hline
 \end{tabularx}
