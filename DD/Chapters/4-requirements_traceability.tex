@@ -1,0 +1,113 @@
+In this section it is explained how the requirements defined in the Requirement Analysis and Specification Document, map the design components explained in this document.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Sign-Up, Login and Profile Management}} \\ \hline
+\multirow{2}{*}{\textbf{Requirements}} & [R1] The system should provide authentication so that each action can be correctly associated with a user \\ 
+& [R2] When a student registers the system generates a profile containing their experience, skills, and education \\ \hline
+\multirow{4}{*}{\textbf{Components}} 
+& AuthenticationService \\ 
+& MainPlatform \\ 
+& CoreEntityManager \\
+& FrontendInterface \\ \hline
+\end{longtable}
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Internship Publication and Management}} \\ \hline
+\multirow{4}{*}{\textbf{Requirements}} 
+& [R3] The system allows companies to create new internship positions at any time \\ 
+& [R4] When a company user clicks on “create internship”, the system prompts the company for all the required information and checks its validity before saving \\ 
+& [R5] When an internship is successfully created, the system generates a work profile containing the required experience and skills for the position \\
+& [R6] When and internship is successfully created it should be findable through the search internship feature and allow student applications \\
+\hline
+\multirow{3}{*}{\textbf{Components}} 
+& MainPlatform \\ 
+& CoreEntityManager \\
+& FrontendInterface \\ \hline
+\end{longtable}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Search and Apply for Internships}} \\ \hline
+\multirow{6}{*}{\textbf{Requirements}}
+& [R7] When a student searches for an internship through the platform, the system accurately processes the student’s search criteria to display related internships \\
+& [R8] When an internship is selected, the system’s user interface summarizes internship information \\
+& [R9] When a student searches for an internship through the platform, the displayed internships are within the selected filters \\
+& [R10] When a student searches for an internship through the platform, the displayed internships are ordered accordingly to the field specified in student's  criteria \\
+& [R11] The system shall allow students to apply to the displayed internship without adding additional information \\
+& [R12] When the application button is clicked, the system shall save the student information and profile and notify the company \\
+\hline
+\multirow{4}{*}{\textbf{Components}} 
+& MainPlatform \\ 
+& CoreEntityManager \\
+& FrontendInterface \\ 
+& NotificationHandler Subsystem\\
+\hline
+\end{longtable}
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Internship Matching and Recommendation}} \\ \hline
+\multirow{4}{*}{\textbf{Requirements}}
+& [R13] The system shall provide regular monitoring to all stored profiles from students and internships \\
+& [R14] The system shall attempt to match student profiles with internship profiles \\
+& [R15] In every match found between an internship and a student, the system shall notify both parts about it \\
+& [R16] The matching algorithm used to find recommendations is accurate and can be improved through user feedback \\
+\hline
+\multirow{4}{*}{\textbf{Components}} 
+& RecommendationHandler Subsystem\\
+& RecommendationEngine \\
+& CoreEntityManager \\
+& NotificationHandler Subsystem\\
+\hline
+\end{longtable}
+
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Interview Management and Selection Process}} \\ \hline
+\multirow{15}{*}{\textbf{Requirements}} & [R17] The system allows company users to review any student profile \\ 
+& [R18] The system allows company users to invite any student to an interview \\ 
+& [R19] The system notifies the company when there are new student profiles to review (either applied or recommended) \\  
+& [R20] When the company user clicks on “invite to interview” over a student, the system prompts the company user to provide possible availability slots for that specific interview \\  
+& [R21] When the company user creates an interview by providing their availability, the system notifies the selected student in less than 6 hours after the interview creation \\  
+& [R22] The system allows students to decline the interview they have been invited for \\  
+& [R23] If the student does not reply to the interview invitation after 48 hours from the sending time, the system declines the interview automatically \\  
+& [R24] When a student accepts an interview invite, the system prompts them to select one of the available time slots for having the interview \\  
+& [R25] The system does not allow the student to accept an interview invite without selecting one of the available slots the system provides \\  
+& [R26] When the interview starting time comes (slot start), the system provides the company user with the questionnaire associated with the internship the interview is for \\  
+& [R27] When the interview finishing time comes (slot end), the system prompts the company user for an interview verdict (approve or reject) \\  
+& [R28] When the company user rejects the student after an interview, the system notifies the student \\  
+& [R29] When the company user approves the student after an interview, the system prompts them to provide the start time and place of the internship \\  
+& [R30] The system does not allow the company to approve the student without providing the internship start time and place \\  
+& [R31] When a company user approves the student after an interview, the system notifies the student of the start time and place of the internship \\ \hline
+\multirow{5}{*}{\textbf{Components}} 
+& FrontendInterface \\  
+& MainPlatform \\  
+& CoreEntityManager \\  
+& NotificationHandler Subsystem\\  
+& InterviewHandler \\ \hline
+\end{longtable}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|p{0.25\textwidth}|p{0.7\textwidth}|}
+\caption{\textbf{Feedback and Complaint Management}} \\ \hline
+\multirow{5}{*}{\textbf{Requirements}}
+& [R32] When the duration time of an internship has passed since its starting time, the system notifies and prompts both the company user and the student to provide feedback on the internship experience \\
+& [R33] The system will not allow any user to use other features of the platform (besides login and feedback) when they have pending feedback on past internships \\
+& [R34] When a user provides feedback on an internship the system notifies its counterpart in the internship about the received feedback \\
+& [R35] The system allows any user to create a complaint about any of their ongoing internships \\
+& [R36] When a user creates a complaint the system prompts them to provide a non-empty description of the issue \\
+\hline
+\multirow{5}{*}{\textbf{Components}} 
+& FrontendInterface \\
+& MainPlatform \\
+& CoreEntityManager \\
+& NotificationHandler Subsystem\\
+& HistoryManager \\
+\hline
+\end{longtable}
+
